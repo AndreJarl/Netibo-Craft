@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rattan Furniture Shop</title>
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <img src="logo.png" alt="Logo" class="logo">
+      <nav>
+        <a href="#">HOME</a>
+        <a href="#">ABOUT US</a>
+        <a class="active" href="#">PRODUCTS</a>
+        <a href="#">CALL US</a>
+        <a href="#">FEEDBACK</a>
+      </nav>
+      <div class="cart-icon">
+        🛒<span id="cartCount">0</span>
+      </div>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <button onclick="searchProducts()">Search</button>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <button>TABLES</button>
+    <button>CHAIRS</button>
+    <button>LAMP</button>
+    <button>HAMMOCK</button>
+  </aside>
+
+  <main id="productContainer"></main>
+
+  <section class="cart hidden" id="cart">
+    <h2>Cart</h2>
+    <ul id="cartItems"></ul>
+  </section>
+
+  <script src="products.js"></script>
+</body>
+</html>
