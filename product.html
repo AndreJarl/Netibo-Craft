@@ -10,23 +10,16 @@
   <header>
     <div class="nav">
       <img src="logo.png" alt="Logo" class="logo">
-      <nav>
-        <a href="#">HOME</a>
-        <a href="#">ABOUT US</a>
-        <a class="active" href="#">PRODUCTS</a>
-        <a href="#">CALL US</a>
-        <a href="#">FEEDBACK</a>
-      </nav>
       <div class="cart-icon">
         🛒<span id="cartCount">0</span>
       </div>
     </div>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search...">
+   
+  </header>
+ <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="⌕" >
       <button onclick="searchProducts()">Search</button>
     </div>
-  </header>
-
   <aside class="sidebar">
     <button>TABLES</button>
     <button>CHAIRS</button>
@@ -40,6 +33,16 @@
     <h2>Cart</h2>
     <ul id="cartItems"></ul>
   </section>
+
+  <div id="productModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal()">&times;</span>
+    <h2 id="modalProductName"></h2>
+    <img id="modalProductImage" src="" alt="">
+    <p id="modalProductDescription"></p>
+  </div>
+</div>
+
 
   <script src="products.js"></script>
 </body>

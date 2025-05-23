@@ -1,9 +1,76 @@
 const products = [
-  { id: 1, name: "Rattan Cocktail Roundtable", price: 1499, image: "product-imgs/RattanCocktailRoundtable.JPG"},
-  { id: 2, name: "Rattan Chair", price: 1289, image: "prodcut-imgs/RattanCurvedSofa.JPG" },
-  { id: 3, name: "Rattan High Chair", price: 979, image: "img3.jpg" },
-  { id: 4, name: "Rattan Center Table", price: 599, image: "img4.jpg" }
+  {
+    id: 1,
+    name: "Rattan Cocktail Round Table",
+    price: 1499,
+    image: "product-imgs/RattanCocktailRoundtable.JPG",
+    description: "Rattan table with round top and a flared base. Height: 70-80 cm (28-31 inches), Diameter: 60-70 cm (24-28 inches)."
+  },
+  {
+    id: 2,
+    name: "Rattan Flower Chair",
+    price: 1289,
+    image: "product-imgs/RattanFlowerChair.JPG",
+    description: "Uniquely designed rattan loveseat with a distinctive, flower-like back. Width: 120-150 cm, Depth: 60-70 cm, Height: 90-100 cm."
+  },
+  {
+    id: 3,
+    name: "Rattan Curved Sofa",
+    price: 979,
+    image: "product-imgs/RattanCurvedSofa.JPG",
+    description: "Uniquely shaped, woven rattan sofa. Length: 180-200 cm, Width: 80-100 cm, Height: 70-80 cm."
+  },
+  {
+    id: 4,
+    name: "Rattan Flower Set",
+    price: 599,
+    image: "product-imgs/RattanFlowerSet.JPG",
+    description: "Patio set with two flower-shaped rattan chairs and a small square rattan table, all with black metal legs."
+  },
+  {
+    id: 5,
+    name: "Rattan Hammock",
+    price: 679,
+    image: "product-imgs/RattanHammock.JPG",
+    description: "Hanging rattan hammock with a teardrop shape and a black metal stand. Height: 100-120 cm, Width: 80-100 cm, Stand Diameter: 70-80 cm."
+  },
+  {
+    id: 6,
+    name: "Rattan Hanging Lamp",
+    price: 500,
+    image: "product-imgs/RattanHangingLamp.JPG",
+    description: "Hanging rattan lampshade. Diameter: 25-30 cm, Height: 20-25 cm."
+  },
+  {
+    id: 7,
+    name: "Rattan Hanging Round Lamp Shade",
+    price: 500,
+    image: "product-imgs/RattanHangingRoundLampShade.JPG",
+    description: "Hanging lampshade made of woven rattan, with a slightly bell-shaped design. Height: 25-30 cm, Diameter: 20-25 cm."
+  },
+  {
+    id: 8,
+    name: "Rattan Long Chair",
+    price: 1200,
+    image: "product-imgs/RattanLongChair.JPG",
+    description: "Modern-style bench made of woven rattan. Length: 120-150 cm, Depth: 60-70 cm, Height: 80-90 cm."
+  },
+  {
+    id: 9,
+    name: "Rattan Long Sofa",
+    price: 1400,
+    image: "product-imgs/RattanLongSofa.JPG",
+    description: "Rattan sofa. Length: 180-200 cm, Depth: 80-90 cm, Height: 80-90 cm."
+  },
+  {
+    id: 10,
+    name: "Woven Sphere Sofa",
+    price: 1200,
+    image: "product-imgs/WovenSphereSofa.JPG",
+    description: "Large, uniquely shaped woven rattan chair. Diameter: 100-120 cm, Height: 80-90 cm."
+  }
 ];
+
 
 let cart = [];
 
@@ -16,9 +83,16 @@ function renderProducts() {
     div.className = "product-card";
     div.innerHTML = `
       <img src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p>P ${product.price.toFixed(2)}</p>
-      <button onclick="addToCart(${product.id})">Add to Cart</button>
+     
+                 <h3>${product.name}</h3>
+      <p class="product-price">₱  ${product.price.toFixed(2)}</p>
+     
+ 
+      <div class="card-button">
+       <button onclick="addToCart(${product.id})">Add to Cart</button>
+          <button onclick="productInfo(${product.id})">View more</button>
+      </div>
+     
     `;
     container.appendChild(div);
   });
@@ -63,6 +137,7 @@ function updateCartUI() {
   cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
   cartItems.innerHTML = "";
 
+
   let total = 0;
 
   cart.forEach(item => {
@@ -70,18 +145,20 @@ function updateCartUI() {
     const li = document.createElement("li");
 
     li.innerHTML = `
+      <img src="${item.image}"/>
+
       ${item.name} 
       <button onclick="decreaseQuantity(${item.id})" style="margin-left:10px; padding: 2px 6px;">-</button>
       <span style="margin: 0 5px;">${item.quantity}</span>
       <button onclick="increaseQuantity(${item.id})" style="padding: 2px 6px;">+</button>
-      - P${(item.price * item.quantity).toFixed(2)}
+      ₱${(item.price * item.quantity).toFixed(2)}
     `;
     cartItems.appendChild(li);
   });
 
   const totalLi = document.createElement("li");
   totalLi.style.fontWeight = "bold";
-  totalLi.textContent = `Total: P${total.toFixed(2)}`;
+  totalLi.textContent = `Total: ₱${total.toFixed(2)}`;
   cartItems.appendChild(totalLi);
 
   // Add checkout button if there are items
@@ -99,6 +176,24 @@ function updateCartUI() {
     cartItems.appendChild(checkoutBtn);
   }
 }
+
+function productInfo(id) {
+  const product = products.find(p => p.id === id);
+  if (product) {
+    document.getElementById("modalProductName").textContent = product.name;
+    document.getElementById("modalProductImage").src = product.image;
+    document.getElementById("modalProductImage").alt = product.name;
+    document.getElementById("modalProductDescription").textContent = product.description;
+
+    document.getElementById("productModal").classList.remove("hidden");
+  }
+}
+
+function closeModal() {
+  document.getElementById("productModal").classList.add("hidden");
+}
+
+
 
 function checkout() {
   alert("Thank you for your purchase!");
@@ -124,8 +219,12 @@ function searchProducts() {
     div.innerHTML = `
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
-      <p>P ${product.price.toFixed(2)}</p>
-      <button onclick="addToCart(${product.id})">Add to Cart</button>
+        <p class="product-price">₱  ${product.price.toFixed(2)}</p>
+     
+       <div class="card-button">
+       <button onclick="addToCart(${product.id})">Add to Cart</button>
+          <button onclick="productInfo(${product.id})">View more</button>
+      </div>
     `;
     container.appendChild(div);
   });

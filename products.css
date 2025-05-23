@@ -38,60 +38,96 @@ header {
   margin-top: 10px;
   display: flex;
   justify-content: center;
+  gap: 3px;
+  align-items: center;
 }
 
 .search-bar input {
-  padding: 6px;
-  border-radius: 6px;
+  padding: 14px 25px 14px 25px;
   border: 1px solid #ccc;
+  border-radius: 25px 10px 10px 25px;
+  font-size: 15px;
 }
 
 .search-bar button {
-  padding: 6px 12px;
-  margin-left: 6px;
-  background: #a67c52;
-  color: white;
-  border: none;
-  border-radius: 6px;
+    padding: 14px;
+    background: #a67c52;
+    border: none;
+    border-radius: 10px 25px 25px 10px;
+    color: white;
+    font-size: 15px;
 }
 
 .sidebar {
   position: fixed;
   top: 120px;
-  left: 10px;
+  left: -25px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 17px;
 }
 
 .sidebar button {
-  background: #d8c0a3;
+   background: #a67c52;
   border: none;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+  color: white;
+  padding: 15px 30px 15px 30px;
+  border-radius: 23px;
+  font-weight: thin;
+  font-size: 15px;
+
+
 }
 
 main {
   margin-left: 150px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 3em;
   padding: 20px;
+  justify-content: center;
 }
 
 .product-card {
-  background: white;
+  background: #a67c52;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 220px;
+  width: 200px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+ 
+  gap: 10px;
+  color: white;
 }
 
+.product-card h3{
+    
+   margin-left: 5px;
+   }
+
 .product-card img {
-  width: 100%;
-  border-radius: 8px;
+  width: 200px;
+  height: 160px;
+  border-radius: 30px;
 }
+
+.product-price{
+  margin-top: -1.5em;
+  margin-left: -4em;
+}
+
+.card-button{
+   display: flex;
+   align-items: center;
+   gap: 1em;
+   margin-top: 1EM;
+}
+
 
 .product-card button {
   margin-top: 5px;
@@ -100,15 +136,16 @@ main {
   background: #a67c52;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 20px;
   cursor: pointer;
+  border: 1px solid white;
 }
 
 .cart {
   position: fixed;
   top: 80px;
   right: 20px;
-  width: 300px;
+  width: 400px;
   max-height: 70vh;
   overflow-y: auto;
   background: white;
@@ -121,14 +158,23 @@ main {
 .cart ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  gap: 0em;
+  flex-direction: column;
 }
 
 .cart li {
   margin-bottom: 10px;
   font-size: 0.95rem;
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
+.cart li img{
+     width: 50px;
+}
 .cart h2 {
   margin-top: 0;
   font-size: 1.2rem;
@@ -137,4 +183,47 @@ main {
 
 .hidden {
   display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  color: white;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #a67c52;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+#modalProductImage{
+   width: 250px;
+   height: 200px;
+    border-radius: 20px;
 }
